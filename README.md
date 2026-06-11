@@ -25,6 +25,14 @@ https://drive.google.com/file/d/1c3tLncRANgq23FDs4g_5SebHNKTxRGRo/view
 - User authentication
 - AI-powered assistance
 
-## Authors
-Academic Project - Faculty of Computers and Information
+## Mobile Application
 
+The Android application package (APK) is included in this repository as:
+
+**app-debug.apk**
+
+You can download and install the APK file to test the mobile application directly on an Android device.
+
+## Authors
+
+Academic Project - Faculty of Artificial Intelligence
