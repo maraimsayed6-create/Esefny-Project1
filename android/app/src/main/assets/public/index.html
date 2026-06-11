@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إسعفني</title>
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= Splash ================= -->
+<div id="splashScreen" class="page splash-bg active">
+    <div class="white-circle-faded">
+        <i class="fas fa-heart-pulse"></i>
+    </div>
+    <h1 class="app-title">إسعفني</h1>
+    <p class="app-subtitle">Where compassion meets healthcare</p>
+</div>
+
+<!-- ================= Login ================= -->
+<div id="loginScreen" class="page auth-page">
+    <div class="auth-header">
+        <span class="tab" id="tabSignup" onclick="setAuthMode('signup')">SIGN UP</span>
+        <span class="tab active" id="tabLogin" onclick="setAuthMode('login')">LOG IN</span>
+    </div>
+
+    <div class="main-logo">
+        <i class="fas fa-heart-circle-plus"></i>
+        <h2>إسعفني</h2>
+    </div>
+
+    <div class="form-container">
+        <input type="text" id="regName" placeholder="الاسم الكامل" style="display:none;">
+        <input type="email" id="userEmail" placeholder="البريد الإلكتروني">
+        <input type="password" id="userPass" placeholder="كلمة المرور">
+        <button class="main-btn" id="authBtn" onclick="handleAuth()">دخول</button>
+    </div>
+</div>
+
+<!-- ================= Gender ================= -->
+<div id="genderScreen" class="page auth-page">
+    <div class="main-logo">
+        <i class="fas fa-venus-mars"></i>
+        <h2>اختر النوع</h2>
+    </div>
+
+    <div class="gender-box">
+        <button class="g-btn" onclick="selectGender('أنثى', this)">أنثى</button>
+        <button class="g-btn" onclick="selectGender('ذكر', this)">ذكر</button>
+    </div>
+
+    <button class="main-btn" onclick="goTo('ageScreen')">التالي</button>
+</div>
+
+<!-- ================= Age ================= -->
+<div id="ageScreen" class="page auth-page">
+    <div class="main-logo">
+        <i class="fas fa-calendar-alt"></i>
+        <h2>عمرك</h2>
+    </div>
+
+    <div class="form-container">
+        <input type="number" id="userAge" placeholder="أدخل عمرك">
+        <button class="main-btn" onclick="finishSignup()">ابدأ</button>
+    </div>
+</div>
+
+<!-- ================= Chat ================= -->
+<div id="chatScreen" class="page chat-page">
+
+    <!-- Header -->
+    <div class="chat-header">
+        <i class="fas fa-bars" onclick="toggleSidebar()"></i>
+        <span>المساعد الطبي</span>
+        <i></i>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <div class="user-avatar">U</div>
+            <span id="displayUserName">مستخدم</span>
+        </div>
+
+        <div class="nav-item" onclick="showProfile()">
+            <i class="fas fa-user"></i> الملف الشخصي
+        </div>
+
+        <div class="nav-item" onclick="openNearestHospital()">
+            <i class="fas fa-hospital"></i> أقرب مستشفى
+        </div>
+
+        <div class="nav-item" onclick="openSettings()">
+            <i class="fas fa-cog"></i> الإعدادات
+        </div>
+
+        <div class="nav-item" onclick="goTo('loginScreen')">
+            <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+        </div>
+    </div>
+
+    <!-- Settings -->
+    <div id="settingsModal" class="settings-modal" onclick="closeSettingsExternally(event)">
+        <div class="settings-content">
+            <div class="settings-header">
+                <h3>إعدادات المظهر</h3>
+                <i class="fas fa-times" onclick="closeSettings()"></i>
+            </div>
+
+            <div class="setting-group">
+                <label>الثيم:</label>
+                <select onchange="applyTheme(this.value)">
+                    <option value="default">افتراضي</option>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Messages -->
+    <div class="messages-area" id="messagesArea">
+        <div class="msg bot">
+            السلام عليكم 👋 أنا مساعدك الطبي، كيف أساعدك؟
+        </div>
+    </div>
+
+    <!-- Attach -->
+    <div id="attachMenu" class="attach-popup">
+        <div class="attach-item" onclick="handleAttach('Camera')">
+            الكاميرا <i class="fas fa-camera"></i>
+        </div>
+
+        <div class="attach-item" onclick="handleAttach('Images')">
+            الصور <i class="fas fa-image"></i>
+        </div>
+
+        <div class="attach-item" onclick="openNearestHospital()">
+            المستشفيات <i class="fas fa-map-marker-alt"></i>
+        </div>
+    </div>
+
+    <!-- Input -->
+    <div class="input-bar">
+
+        <i class="fas fa-paper-plane send-btn" onclick="sendMessage()"></i>
+
+        <div class="input-wrapper">
+            <input type="text" id="chatInput" placeholder="اكتب حالتك (صداع - جرح - حرق...)">
+
+            <input type="file" id="cameraInput" accept="image/*" capture="environment" hidden onchange="handleFileSelect(event)">
+            <input type="file" id="fileInput" accept="image/*" hidden onchange="handleFileSelect(event)">
+        </div>
+
+        <i class="fas fa-paperclip clip-btn" onclick="toggleAttachMenu(event)"></i>
+    </div>
+
+</div>
+
+<!-- ================= Profile ================= -->
+<div id="profileScreen" class="page profile-page">
+    <div class="chat-header">
+        <i class="fas fa-arrow-right" onclick="goTo('chatScreen')"></i>
+        <span>ملف المريض</span>
+    </div>
+
+    <div class="profile-card" id="profileDetails">
+        <!-- البيانات هتتحط هنا من JS -->
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="script.js"></script>
+
+</body>
+</html>

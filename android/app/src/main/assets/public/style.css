@@ -1,0 +1,275 @@
+/* الإعدادات الأساسية لضمان ملء الشاشة */
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+}
+
+body, html { 
+    background: #1a1a1a; 
+    height: 100%; 
+    width: 100%; 
+    overflow: hidden; /* لمنع التمرير العشوائي خارج الصفحات */
+}
+
+/* نظام الصفحات */
+.page { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    display: none; 
+    flex-direction: column; 
+    background: white; 
+    top: 0;
+    left: 0;
+}
+
+.page.active { 
+    display: flex; 
+    z-index: 10; 
+}
+
+/* شاشة التحميل (Splash) */
+.splash-bg { 
+    background: #365492; 
+    justify-content: center; 
+    align-items: center; 
+    color: white; 
+    text-align: center; 
+}
+
+.white-circle-faded { 
+    width: 100px; 
+    height: 100px; 
+    background: rgba(255,255,255,0.2); 
+    border-radius: 50%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 50px; 
+    margin-bottom: 20px; 
+}
+
+/* واجهة الدخول (Auth) */
+.auth-page { 
+    background: linear-gradient(rgba(54, 84, 146, 0.9), rgba(54, 84, 146, 0.9)), 
+                url('https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1000') center/cover; 
+    padding: 20px; 
+    align-items: center; 
+    color: white; 
+    justify-content: center; 
+}
+
+.auth-header { 
+    display: flex; 
+    gap: 30px; 
+    margin-bottom: 30px; 
+    font-weight: bold; 
+}
+
+.tab { 
+    opacity: 0.6; 
+    cursor: pointer; 
+    border-bottom: 2px solid transparent; 
+    padding-bottom: 5px; 
+}
+
+.tab.active { 
+    opacity: 1; 
+    border-bottom: 2px solid white; 
+}
+
+.form-container { 
+    width: 90%; 
+    max-width: 450px; 
+}
+
+input { 
+    width: 100%; 
+    padding: 15px; 
+    margin-bottom: 15px; 
+    border-radius: 12px; 
+    border: none; 
+    outline: none; 
+    font-size: 16px; 
+    background: white;
+}
+
+.main-btn { 
+    width: 100%; 
+    padding: 15px; 
+    background: #e1395f; 
+    color: white; 
+    border: none; 
+    border-radius: 30px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    font-size: 16px; 
+}
+
+/* اختيار النوع (Gender) */
+.gender-box { 
+    display: flex; 
+    gap: 15px; 
+    margin-bottom: 20px; 
+    width: 100%; 
+    max-width: 400px; 
+}
+
+.g-btn { 
+    flex: 1; 
+    padding: 15px; 
+    border: 2px solid white; 
+    background: transparent; 
+    color: white; 
+    border-radius: 15px; 
+    cursor: pointer; 
+}
+
+/* الشات (Chat Screen) */
+.chat-page { background: #f0f2f5; }
+
+.chat-header { 
+    background: #3b5998; 
+    color: white; 
+    padding: 18px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    font-weight: bold; 
+}
+
+/* القائمة الجانبية (Sidebar) */
+.sidebar { 
+    position: absolute; 
+    right: -280px; /* البداية من اليمين لأنه تطبيق عربي */
+    width: 280px; 
+    height: 100%; 
+    background: #365492; 
+    z-index: 100; 
+    transition: 0.4s; 
+    padding: 50px 20px; 
+    color: white; 
+}
+
+.sidebar.active { 
+    right: 0; 
+}
+
+.nav-item { 
+    padding: 15px 0; 
+    border-bottom: 1px solid rgba(255,255,255,0.1); 
+    cursor: pointer; 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    flex-direction: row-reverse; /* للأيقونات في العربي */
+}
+
+/* الرسائل */
+.messages-area { 
+    flex: 1; 
+    padding: 20px; 
+    overflow-y: auto; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 12px; 
+}
+
+.msg { 
+    padding: 12px 18px; 
+    border-radius: 18px; 
+    font-size: 15px; 
+    max-width: 80%; 
+    line-height: 1.4; 
+}
+
+.bot { 
+    background: #3b5998; 
+    color: white; 
+    align-self: flex-start; 
+    border-bottom-left-radius: 2px; 
+}
+
+.user-msg { 
+    background: white; 
+    color: #333; 
+    align-self: flex-end; 
+    border-bottom-right-radius: 2px; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+}
+
+/* شريط الإدخال والمرفقات */
+.attach-popup { 
+    position: absolute; 
+    bottom: 85px; 
+    right: 20px; 
+    background: white; 
+    border-radius: 15px; 
+    width: 200px; 
+    display: none; 
+    flex-direction: column; 
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2); 
+    z-index: 50; 
+}
+
+.attach-popup.active { 
+    display: flex; 
+}
+
+.input-bar { 
+    background: white; 
+    padding: 15px; 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    border-top: 1px solid #ddd; 
+}
+
+.input-wrapper { flex: 1; }
+.input-wrapper input { 
+    background: #f0f2f5; 
+    margin: 0; 
+    border-radius: 25px; 
+    padding: 10px 20px; 
+}
+
+.send-btn, .clip-btn {
+    font-size: 22px;
+    color: #3b5998;
+    cursor: pointer;
+}
+
+/* شاشة الملف الشخصي */
+.profile-card { 
+    background: white; 
+    padding: 30px; 
+    border-radius: 20px; 
+    width: 85%; 
+    max-width: 500px; 
+    margin: 40px auto; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+    line-height: 2.5; 
+    text-align: right;
+}
+
+/* التجاوب مع الشاشات الكبيرة (التابلت) */
+@media (min-width: 768px) {
+    .form-container, .gender-box { max-width: 500px; }
+    .msg { max-width: 60%; font-size: 17px; }
+    .white-circle-faded { width: 130px; height: 130px; font-size: 70px; }
+}/* تنسيق نافذة الإعدادات */
+.settings-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 2000; }
+.settings-content { background: white; padding: 25px; border-radius: 20px; width: 85%; max-width: 400px; text-align: right; color: #333; }
+.settings-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; color: #365492; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+.setting-group select { width: 100%; padding: 10px; margin-top: 10px; border-radius: 10px; border: 1px solid #ddd; }
+
+/* الثيمات */
+body.dark-theme .chat-page { background: #121212; }
+body.dark-theme .chat-header { background: #1f1f1f; }
+body.dark-theme .bot { background: #333; }
+body.dark-theme .user-msg { background: #444; color: white; }
+
+body.light-theme .chat-page { background: #ffffff; }
+body.light-theme .chat-header { background: #f8f9fa; color: #365492; border-bottom: 1px solid #ddd; }

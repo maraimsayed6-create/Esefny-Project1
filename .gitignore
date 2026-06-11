@@ -1,0 +1,10 @@
+node_modules/
+build/
+ios/Pods/
+.dart_tool/
+.packages
+.pub/
+*.zip
+*.apk
+*.ipa
+*.log
