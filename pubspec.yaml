@@ -1,0 +1,35 @@
+name: esefny_chat
+description: "A new Flutter project."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations: # لضمان دعم اللغة العربية
+    sdk: flutter
+  http: ^1.1.0  # اتأكدي إن مفيش مسافات زيادة هنا
+  cupertino_icons: ^1.0.8
+  webview_flutter: ^4.4.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.13.1
+
+# إعدادات أيقونة التطبيق (صورة القلب)
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/logo.png"
+  adaptive_icon_background: "#365492"
+  adaptive_icon_foreground: "assets/logo.png"
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/          # السطر ده بيخلي التطبيق يشوف كل اللي جوه الفولدر مرة واحدة
